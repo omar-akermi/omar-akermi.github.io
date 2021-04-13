@@ -1,0 +1,89 @@
+I"�<p>It’s a write-up about the room : <a href="https://tryhackme.com/room/rpwebscanning">Try Hack Me - Room : Web Scanning</a></p>
+
+<h1 id="task-1-pull-the-lever-kronk-">[Task 1] Pull the lever, Kronk !</h1>
+
+<p><img src="/assets/img/thm/web-scanning/task-1.png" alt="Task 1" /></p>
+
+<p>We deploy the instance.</p>
+
+<h1 id="task-2---im-supposed-to-scan-with-that">[Task 2] - …I’m supposed to scan with that?</h1>
+
+<ul>
+  <li>
+    <p>First and foremost, what switch do we use to set the target host? <code class="language-plaintext highlighter-rouge">-h</code></p>
+  </li>
+  <li>
+    <p>Websites don’t always properly redirect to their secure transport port and can sometimes have different issues depending on the manner in which they are scanned. How do we disable secure transport? <code class="language-plaintext highlighter-rouge">-nossl</code></p>
+  </li>
+  <li>
+    <p>How about the opposite, how do we force secure transport? <code class="language-plaintext highlighter-rouge">-ssl</code></p>
+  </li>
+  <li>
+    <p>What if we want to set a specific port to scan? <code class="language-plaintext highlighter-rouge">-p</code></p>
+  </li>
+  <li>
+    <p>As the web is constantly evolving, so is Nikto. A database of vulnerabilities represents a core component to this web scanner, how do we verify that this database is working and free from error?  <code class="language-plaintext highlighter-rouge">-dbcheck</code></p>
+  </li>
+  <li>
+    <p>If instructed to, Nitko will attempt to guess and test both files within directories as well as usernames. Which switch and numerical value do we use to set Nikto to enumerate usernames in Apache? Keep in mind, this option is deprecated in favor of plugins, however, it’s still a great option to be aware of for situational usage. <code class="language-plaintext highlighter-rouge">-mutate 3</code></p>
+  </li>
+  <li>
+    <p>Suppose we know the username and password for a web forum, how do we set Nikto to do a credentialed check? Suppose the username is admin and the password is PrettyAwesomePassword1234. <code class="language-plaintext highlighter-rouge">-id admin:PrettyAwesomePassword1234</code></p>
+  </li>
+  <li>
+    <p>Let’s scan our target machine, what web server do we discover and what version is it?</p>
+  </li>
+</ul>
+
+<p>Scan : <code class="language-plaintext highlighter-rouge">nikto -h ip_machine</code>. The version is <strong>Apache/2.4.7</strong>.</p>
+
+<ul>
+  <li>
+    <p>This box is vulnerable to very poor directory control due to it’s web server version, what directory is indexed that really shouldn’t be? <code class="language-plaintext highlighter-rouge">config</code></p>
+  </li>
+  <li>
+    <p>Nikto scans can take a while to fully complete, which switch do we set in order to limit the scan to end at a certain time? <code class="language-plaintext highlighter-rouge">-until</code></p>
+  </li>
+  <li>
+    <p>But wait, there’s more! How do we list all of the plugins are available? <code class="language-plaintext highlighter-rouge">-list-plugins</code></p>
+  </li>
+  <li>
+    <p>On the flip-side of the database, plugins represent another core component to Nikto. Which switch do we use to instruct Nikto to use plugin checks to find out of date software on the target host? Keep in mind that when testing this command we need to specify the host we intend to run this against. For submitting your answer, use only the base command with the out of date option. <code class="language-plaintext highlighter-rouge">Plugins outdated</code></p>
+  </li>
+  <li>
+    <p>Finally, what if we’d like to use our plugins to run a series of standard tests against the target host? <code class="language-plaintext highlighter-rouge">-Plugins tests</code></p>
+  </li>
+</ul>
+
+<h1 id="task-3---zip-zap-">[Task 3] - Zip ZAP !</h1>
+
+<ul>
+  <li>
+    <p>Launch ZAP, what option to we set in order to specify what we are attacking? <code class="language-plaintext highlighter-rouge">URL to attack</code></p>
+  </li>
+  <li>
+    <p>ZAP will discover a file that typically contains pages which well-behaved web indexing engines will read in order to know which sections of a site to avoid. What is the name of this file? (Lucky for us, our scanner isn’t what we would call ‘well-behaved’!) <code class="language-plaintext highlighter-rouge">robots.txt</code></p>
+  </li>
+  <li>
+    <p>One entry is included in the disallow section of this file, what is it? <code class="language-plaintext highlighter-rouge">\</code></p>
+  </li>
+  <li>
+    <p>ZAP will find a directory that contains images for our application, what is the path for that directory? (This is what will follows the name/ip of the website) <code class="language-plaintext highlighter-rouge">/dvwa/images/</code></p>
+  </li>
+  <li>
+    <p>This website doesn’t force a secure connection by default and ZAP isn’t pleased with it. Which related cookie is ZAP upset about? <code class="language-plaintext highlighter-rouge">HttpOnly</code></p>
+  </li>
+  <li>
+    <p>Featured in various rooms on TryHackMe, Cross-Site Scripting is a vicious attack that is becoming ever more common on the open web. What Alert does ZAP produce to let us know that this site is vulnerable to XSS? Note, there are often a couple warnings produced for this, look for one more so directly related to the web client. <code class="language-plaintext highlighter-rouge">Web Browser XSS Protection Not Enabled</code></p>
+  </li>
+  <li>
+    <p>The ZAP proxy spider represents the component responsible for ‘crawling’ the site. What site is found to be out of scope? <code class="language-plaintext highlighter-rouge">http://wwww.dvwa.co.uk</code></p>
+  </li>
+  <li>
+    <p>ZAP will use primarily two methods in order to scan a website, which of these two HTTP methods requests content? <code class="language-plaintext highlighter-rouge">GET</code></p>
+  </li>
+  <li>
+    <p>Which option attempts to submit content to the website? <code class="language-plaintext highlighter-rouge">POST</code></p>
+  </li>
+</ul>
+:ET

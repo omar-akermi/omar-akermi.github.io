@@ -1,0 +1,58 @@
+I"C	<p>It’s a write-up about the challenge : <a href="https://ringzer0ctf.com/challenges/26">Ringzer0CTF - Martian message 3</a></p>
+
+<h1 id="challenge-26---martian-message-3">Challenge 26 - Martian message 3</h1>
+
+<h2 id="1-challenge">1. Challenge</h2>
+
+<p><code class="language-plaintext highlighter-rouge">RU9CRC43aWdxNDsxaWtiNTFpYk9PMDs6NDFS</code></p>
+
+<h2 id="2-solution">2. Solution</h2>
+
+<p>The cipher is only composed of :
+	* alphanumeric characters and the number 
+	* the number of characters for the cipher is a multiple of 4</p>
+
+<p>We put the code in a base64 format decoder on this website :
+https://www.base64decode.org/
+Or we can do this command also :</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre>echo RU9CRC43aWdxNDsxaWtiNTFpYk9PMDs6NDFS | openssl enc -d -base64; echo
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>We found : <code class="language-plaintext highlighter-rouge">EOBD.7igq4;1ikb51ibOO0;:41R</code></p>
+
+<p>The decoded result has only printable characters and alphanumeric characters.</p>
+
+<p>We knew ringer0team has many of the flags starting with <code class="language-plaintext highlighter-rouge">FLAG</code>.
+So, we thought that the first four characters of the code should be <code class="language-plaintext highlighter-rouge">FLAG</code>.</p>
+
+<p>We tried with a XOR decoder on this website : http://xor.pw/
+with the first four characters, and we obtained 3. Indeed : <code class="language-plaintext highlighter-rouge">E ^ F = 3</code>
+Therefore, 3 is the key.</p>
+
+<p>We wrote a simple python program flag.py :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td> --><td class="rouge-code"><pre>code = 'EOBD.7igq4;1ikb51ibOO0;:41R'
+
+flag = ''
+
+for i in code :
+	x = ord(i) ^ 3
+	flag = flag + chr(x)
+	
+print(flag)
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>We launched this program : <code class="language-plaintext highlighter-rouge">python flag.py</code></p>
+
+<p>The result is : <strong>FLAG-4jdr782jha62jaLL38972Q</strong></p>
+:ET

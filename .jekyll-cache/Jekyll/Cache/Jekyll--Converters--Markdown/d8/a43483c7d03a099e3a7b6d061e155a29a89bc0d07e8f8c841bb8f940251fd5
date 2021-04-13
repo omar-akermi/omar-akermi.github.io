@@ -1,0 +1,101 @@
+I"�<p>It’s a write-up about the challenge : <a href="https://ringzer0ctf.com/challenges/31">Ringzer0CTF - Bash Jail 3</a></p>
+
+<h1 id="challenge-31---bash-jail-3">Challenge 31 - Bash Jail 3</h1>
+
+<h2 id="1-challenge">1. Challenge</h2>
+
+<p>After login into the level3 with this command : 
+<code class="language-plaintext highlighter-rouge">ssh -l level3 -p 10220 challenges.ringzer0team.com</code>
+and this password : FLAG-a78i8TFD60z3825292rJ9JK12gIyVI5P</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+</pre></td> --><td class="rouge-code"><pre>RingZer0 Team Online CTF
+
+BASH Jail Level 3:
+Current user is uid=1002(level3) gid=1002(level3) groups=1002(level3)
+
+Flag is located at /home/level3/flag.txt
+
+Challenge bash code:
+-----------------------------
+
+WARNING: this prompt is launched using ./prompt.sh 2&gt;/dev/null
+
+# CHALLENGE
+
+function check_space {
+	if [[ $1 == *[bdksc]* ]]
+	then 	
+    		return 0
+	fi
+
+	return 1
+}
+
+while :
+do
+	echo "Your input:"
+	read input
+	if check_space "$input" 
+	then
+		echo -e '\033[0;31mRestricted characters has been used\033[0m'
+	else
+		output=`$input` &amp;&gt;/dev/null
+		echo "Command executed"
+	fi
+done 
+
+-----------------------------
+Your input:
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="2-solution">2. Solution</h2>
+
+<p>The script threw stdout and stder to /dev/null. 
+Even if the function check_space didn’t accept some charcacters, we could use the command : <code class="language-plaintext highlighter-rouge">eval uniq flag.txt</code></p>
+
+<p>It exists three file descriptors : stdout (1), stderr (2) and stdin (0)
+We could pass the filter with a pipe to stdin.</p>
+
+<p>So we wrote : <code class="language-plaintext highlighter-rouge">eval uniq flag.txt &gt;&amp;0</code>.
+The uniq command in Linux is a command line utility that reports or filters out the repeated lines in a file.</p>
+
+<p>The flag is : <strong>FLAG-s9wXyc9WKx1X6N9G68fCR0M78sx09D3j</strong></p>
+:ET

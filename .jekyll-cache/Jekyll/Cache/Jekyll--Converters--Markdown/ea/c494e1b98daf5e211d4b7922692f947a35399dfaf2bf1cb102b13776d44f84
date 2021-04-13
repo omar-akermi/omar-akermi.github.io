@@ -1,0 +1,105 @@
+I"<p>It’s a write-up about the room : <a href="https://tryhackme.com/room/ccstego">Try Hack Me - Room : CC-Steganography</a></p>
+
+<h1 id="task-2---steghide">[Task 2] - Steghide</h1>
+
+<ul>
+  <li>
+    <p>What argument allows you to embed data(such as files) into other files? <code class="language-plaintext highlighter-rouge">embed</code></p>
+  </li>
+  <li>
+    <p>What flag let’s you set the file to embed ? <code class="language-plaintext highlighter-rouge">-ef</code></p>
+  </li>
+  <li>
+    <p>What flag allows you to set the “cover file”?(i.e  the jpg) <code class="language-plaintext highlighter-rouge">-cf</code></p>
+  </li>
+  <li>
+    <p>How do you set the password to use for the cover file? <code class="language-plaintext highlighter-rouge">-p</code></p>
+  </li>
+  <li>
+    <p>What argument allows you to extract data from files? <code class="language-plaintext highlighter-rouge">extract</code></p>
+  </li>
+  <li>
+    <p>How do you select the file that you want to extract data from? <code class="language-plaintext highlighter-rouge">-sf</code></p>
+  </li>
+  <li>
+    <p>Given the passphrase “password123”, what is the hidden message in the included “jpeg1” file.</p>
+  </li>
+</ul>
+
+<p>We used : <code class="language-plaintext highlighter-rouge">steghide extract -sf jpeg1.jpg</code> and <code class="language-plaintext highlighter-rouge">cat a.txt</code>. We found <strong>pinguftw</strong> flag.</p>
+
+<h1 id="task-3---zsteg">[Task 3] - zsteg</h1>
+
+<ul>
+  <li>
+    <p>How do you specify that the least significant bit comes first ? <code class="language-plaintext highlighter-rouge">--lsb</code></p>
+  </li>
+  <li>
+    <p>What about the most significant bit? <code class="language-plaintext highlighter-rouge">--msb</code></p>
+  </li>
+  <li>
+    <p>How do you specify verbose mode? <code class="language-plaintext highlighter-rouge">-v</code></p>
+  </li>
+  <li>
+    <p>How do you extract the data from a specific payload? <code class="language-plaintext highlighter-rouge">-E</code></p>
+  </li>
+  <li>
+    <p>In the included file “png1” what is the hidden message? We used <code class="language-plaintext highlighter-rouge">zsteg png1.png</code> and found <strong>nootnoot$</strong>.</p>
+  </li>
+  <li>
+    <p>What about the payload used to encrypt it. <code class="language-plaintext highlighter-rouge">b1,bgr,lsb,xy</code></p>
+  </li>
+</ul>
+
+<h1 id="task-4---exiftool">[Task 4] - Exiftool</h1>
+
+<ul>
+  <li>In the included jpeg3 file, what is the document name ? <code class="language-plaintext highlighter-rouge">Hello :)</code></li>
+</ul>
+
+<h1 id="task-5---stegoveritas">[Task 5] - Stegoveritas</h1>
+
+<ul>
+  <li>
+    <p>How do you check the file for metadata? <code class="language-plaintext highlighter-rouge">-meta</code></p>
+  </li>
+  <li>
+    <p>How do you check for steghide hidden information ? <code class="language-plaintext highlighter-rouge">-steghide</code></p>
+  </li>
+  <li>
+    <p>What flag allows you to extract LSB data from the image? <code class="language-plaintext highlighter-rouge">-extractLSB</code></p>
+  </li>
+  <li>
+    <p>In the included image jpeg2 what is the hidden message? <code class="language-plaintext highlighter-rouge">kekekekek</code></p>
+  </li>
+</ul>
+
+<h1 id="task-6---spectograms">[Task 6] - Spectograms</h1>
+
+<ul>
+  <li>What is the hidden text in the included wav2 file? <code class="language-plaintext highlighter-rouge">Google</code></li>
+</ul>
+
+<h1 id="the-final-exam">The final Exam</h1>
+
+<ul>
+  <li>What is key 1?</li>
+</ul>
+
+<p>We used <code class="language-plaintext highlighter-rouge">exiftool</code> and found : <code class="language-plaintext highlighter-rouge">Document Name : "password=admin".</code>
+After that we used <code class="language-plaintext highlighter-rouge">steghide extractt -sf exam1.jpeg</code> with the password <code class="language-plaintext highlighter-rouge">admin</code>. <br />
+In the file <code class="language-plaintext highlighter-rouge">a.txt</code> created there is the key 1 : <strong>superkeykey</strong>.</p>
+
+<ul>
+  <li>What is key 2 ?</li>
+</ul>
+
+<p>We examined the <code class="language-plaintext highlighter-rouge">key2.wav</code> in Sonic Visualizer and found <code class="language-plaintext highlighter-rouge">https://imgur.com/KTrtNI5</code>.<br />
+Next : <code class="language-plaintext highlighter-rouge">zsteg --lsb KTrtNI5.png</code> and there is the key 2 : <strong>fatality</strong>.</p>
+
+<ul>
+  <li>What is key 3 ?</li>
+</ul>
+
+<p>For the key 3, we used <code class="language-plaintext highlighter-rouge">stegoveritas qrcode.png</code> and the key result is <strong>killshot</strong>.</p>
+:ET

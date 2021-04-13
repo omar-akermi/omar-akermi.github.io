@@ -1,0 +1,62 @@
+I"<p>It’s a write-up about the room : <a href="https://tryhackme.com/room/rptmux">Try Hack Me - Room : tmux</a></p>
+
+<h1 id="task-1-screens-wishes-it-was-cool">[Task 1] Screens wishes it was cool</h1>
+
+<blockquote>
+  <p>tmux, the terminal multiplexer, is easily one of the most used tools by the Linux community (and not just pentesters!). While not a malicious tool, tmux makes running simultaneous tasks throughout a pentest incredibly easy. In this primer room, we’ll walk through the process of installing and using some of the most common key combinations used in tmux.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Once tmux is installed, let’s launch a new session. What command do we use to launch a new session without a custom name? <code class="language-plaintext highlighter-rouge">tmux</code></p>
+  </li>
+  <li>
+    <p>All tmux commands start with a keyboard button combination. What is the first key in this combination? <code class="language-plaintext highlighter-rouge">Control</code></p>
+  </li>
+  <li>
+    <p>How about the second key? Note, these keys must be pressed at the same time and released before pressing the next target key in the combination. <code class="language-plaintext highlighter-rouge">B</code></p>
+  </li>
+  <li>
+    <p>Lets go ahead and detach from our newly created tmux session. What key do we need to add to the combo in order to detach? <code class="language-plaintext highlighter-rouge">D</code></p>
+  </li>
+  <li>
+    <p>Well shoot, we’ve detached from our session. How do we list all of our sessions? <code class="language-plaintext highlighter-rouge">tmux ls</code></p>
+  </li>
+  <li>
+    <p>What did our session name default to when we created one without a set name? <code class="language-plaintext highlighter-rouge">0</code></p>
+  </li>
+  <li>
+    <p>Now that we’ve found the name of our session, how do we attach to it? <code class="language-plaintext highlighter-rouge">tmux a -t 0</code></p>
+  </li>
+  <li>
+    <p>Let’s go ahead and make a new window in this session. What key do we add to the combo in order to do this? <code class="language-plaintext highlighter-rouge">c</code></p>
+  </li>
+  <li>
+    <p>Whew! Plenty of output to work with now! If you work with a relatively small terminal like me, this output might not all fit on screen at once. To fix that, let’s enter ‘copy mode’. What key do we add to the combo to enter copy mode? <code class="language-plaintext highlighter-rouge">[</code></p>
+  </li>
+  <li>
+    <p>Copy mode is very similar to ‘less’ and allows up to scroll up and down using the arrow keys. What if we want to go up to the very top? <code class="language-plaintext highlighter-rouge">g</code></p>
+  </li>
+  <li>
+    <p>How about the bottom? <code class="language-plaintext highlighter-rouge">G</code></p>
+  </li>
+  <li>
+    <p>What key do we press to exit ‘copy mode’? <code class="language-plaintext highlighter-rouge">q</code></p>
+  </li>
+  <li>
+    <p>This window we’re working in is nice and all but I think we need an upgrade. What key do we add to the combo to split the window vertically? <code class="language-plaintext highlighter-rouge">%</code></p>
+  </li>
+  <li>
+    <p>How about horizontally? <code class="language-plaintext highlighter-rouge">"</code></p>
+  </li>
+  <li>
+    <p>Say one of these newly minted panes becomes unresponsive or we’re just done working in it, what key do we add to the combo to ‘kill’ the pane? <code class="language-plaintext highlighter-rouge">x</code></p>
+  </li>
+  <li>
+    <p>Now that’s we’ve finished out work, what can we type to close the session? <code class="language-plaintext highlighter-rouge">exit</code></p>
+  </li>
+  <li>
+    <p>Last but now least, how do we spawn a named tmux session named ‘neat’? <code class="language-plaintext highlighter-rouge">tmux new -s neat</code></p>
+  </li>
+</ul>
+:ET

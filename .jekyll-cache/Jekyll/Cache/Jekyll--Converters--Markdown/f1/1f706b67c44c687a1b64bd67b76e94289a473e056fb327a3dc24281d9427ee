@@ -1,0 +1,22 @@
+I"„<p>Itâ€™s a write-up about the challenge : <a href="https://ringzer0ctf.com/challenges/63">Ringzer0CTF - Martian Message part 2</a></p>
+
+<h1 id="challenge-63---martian-message-part-2">Challenge 63 - Martian Message part 2</h1>
+
+<h2 id="1-challenge">1. Challenge</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>I think that's the key "fselkladfklklakl"
+
+KDERE2UNX1W1H96GYQNUSQT1KPGB 
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="2-solution">2. Solution</h2>
+
+<p>It is a vigenere cipher. Simply shift the ciphertext by the key.
+We used this website to decode the Martian message.
+https://www.dcode.fr/vigenere-cipher</p>
+
+<p>The flag is : <strong>FLAGU2JNU1R1X96VOFNKHLB1GEWQ</strong></p>
+:ET

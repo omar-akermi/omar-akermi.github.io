@@ -1,0 +1,246 @@
+I"q<p>It’s a write-up about the room : <a href="https://tryhackme.com/room/scripting">Try Hack Me - Room : Scripting</a></p>
+
+<h1 id="task-1---easy-base64">Task 1 - [Easy] Base64</h1>
+
+<ul>
+  <li>What is the final string?</li>
+</ul>
+
+<p>The script <code class="language-plaintext highlighter-rouge">task-1.py</code> decoded the string which is in the file <code class="language-plaintext highlighter-rouge">b64.txt</code> to get the final flag. This one has been base64’d 50 times.</p>
+
+<h2 id="script-task-1py">Script task-1.py</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre>import base64
+
+file = open("b64.txt","r")
+flag = file.read()
+
+code = ""
+
+for i in range(0,50):
+	code = base64.b64decode(flag)
+	flag = code
+
+print(flag)
+file.close()
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>After executed the scipt <code class="language-plaintext highlighter-rouge">task-1.py</code>, we obtained : <code class="language-plaintext highlighter-rouge">b'HackBack2019='</code>.   So, the flag is <strong>HackBack2019=</strong>.</p>
+
+<h1 id="task-2---medium-gotta-catch-em-all">Task 2 - [Medium] Gotta Catch em All</h1>
+
+<h2 id="script-task-2py">Script task-2.py</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+</pre></td><td class="rouge-code"><pre>import socket 
+import sys
+import time
+
+host=sys.argv[1]
+port = 1337
+number = 0
+
+while 1:
+	try:
+		s = socket.socket()
+		s.connect((host,port))
+		if (port == 9765):
+			break
+		old_port = port
+		request = "GET / HTTP/1.1\r\nHost:%s\r\n\r\n" % host
+		s.send(request.encode())
+		response = s.recv(4096)
+		http_response = repr(response)
+		http_trim = http_response[167:]
+		http_trim = http_trim.replace('\'','')
+		data_list = list(http_trim.split(" "))
+		port = int(data_list[2])
+		print('Operation: '+data_list[0]+', number: '+ data_list[1]+', next port: '+ data_list[2])
+		if(port != old_port):
+			if(data_list[0] == 'add'):
+				number += float(data_list[1])
+			elif(data_list[0] == 'minus'):
+				number -= float(data_list[1])
+			elif(data_list[0] == 'multiply'):
+				number *= float(data_list[1])
+			elif(data_list[0] == 'divide'):
+				number /= float(data_list[1])
+		s.close()
+	except:
+		s.close()
+		pass
+
+print(number)
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">python task-2.py ip_machine</code></p>
+
+<h1 id="task-3---hard">Task 3 - [Hard]</h1>
+
+<h2 id="script-task-3py">Script task-3.py</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+</pre></td><td class="rouge-code"><pre>import socket
+import sys
+import hashlib
+
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.ciphers import (
+    Cipher, algorithms, modes
+)
+
+host = sys.argv[1]
+port = 4000
+
+def AES_GCM_decrypt(key, iv, ciphertext, tag):
+	associated_data = ''
+	decryptor = Cipher(algorithms.AES(key), modes.GCM(iv,tag), backend=default_backend()).decryptor()
+	decryptor.authenticate_additional_data(associated_data)
+	return decryptor.update(ciphertext) + decryptor.finalize()
+
+def SHA256_hash(hash_string):
+        sha_signature = hashlib.sha256(hash_string.encode()).hexdigest()
+        return sha_signature
+
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect((host,port))
+
+s.send(b'hello\n')
+data = s.recv(2048)
+print(data)
+
+s.send(b'ready\n')
+ready = s.recv(2048)
+print(ready)
+checksum = ready[104:136]
+hex_checksum = checksum.encode('hex')
+print("checksum in hex: "+hex_checksum)
+
+while 1:
+	s.send(b'final\n')
+	flag = s.recv(2048)
+
+	s.send(b'final\n')
+	tag = s.recv(2048)
+
+	key = b'thisisaverysecretkeyl337'
+	iv = b'secureivl337'
+	tag = bytes(tag)
+	ciphertext = bytes(flag)
+	plaintext = AES_GCM_decrypt(key, iv, ciphertext, tag)
+
+	hash_string = SHA256_hash(plaintext)
+	if(hash_string == hex_checksum):
+		print('flag is: '+plaintext)
+		break
+
+s.close()
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">python task-3.py ip_machine</code></p>
+:ET

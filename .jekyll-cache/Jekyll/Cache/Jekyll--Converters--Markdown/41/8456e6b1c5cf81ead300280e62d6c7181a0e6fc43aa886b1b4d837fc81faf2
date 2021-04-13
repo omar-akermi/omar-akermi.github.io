@@ -1,0 +1,39 @@
+I"±<p>Itâ€™s a write-up about the challenge : <a href="https://ringzer0ctf.com/challenges/114">Ringzer0CTF - Hangovers and more : Bacon</a></p>
+
+<h1 id="challenge-114---hangovers-and-more--bacon">Challenge 114 - Hangovers and more : Bacon</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td> --><td class="rouge-code"><pre>VoiCI unE SUpeRbe reCeTtE cONcontee pAR un GrouPe d'ArtistEs culinaiRe, dONT le BOn Gout et lE SeNs de LA cLasSe n'est limIteE qUe par LE nombre DE cAlOries qU'ils PeUVEnt Ingurgiter. Ces virtuoses de la friteuse vous presente ce petit clip plein de gout savoureux !!
+
+We hijack the Bacon Bacon Truck in San Francisco!
+
+
+The cure for your worst
+Hangovers and more: Bacon
+True: Science says so
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="2-solution">2. Solution</h2>
+
+<p>We knew the Bacon cipher. 
+We created a script to encode this text : 
+a <code class="language-plaintext highlighter-rouge">B</code> for a supper character and a <code class="language-plaintext highlighter-rouge">A</code> lower character.</p>
+
+<p>We obtained :</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre>BAABBAABBBAABAAAABABABABBAAAAAAABBAABAAABAABAAAAABAAAAAAAABAABBBAABBABAAAAAABBABAAABBABAABAAAAAAAABAABABAAAABBAAAAAABBABABAAAAABAAABABBBAABAAAAAAAAA
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>We put this on this website : http://rumkin.com/tools/cipher/baconian.php</p>
+
+<p>We obtained : <code class="language-plaintext highlighter-rouge">THEFLAGISBACONANDJACKDANIELSA</code></p>
+
+<p>The solution of the challenge is : <strong>BACONANDJACKDANIELS</strong>.</p>
+:ET

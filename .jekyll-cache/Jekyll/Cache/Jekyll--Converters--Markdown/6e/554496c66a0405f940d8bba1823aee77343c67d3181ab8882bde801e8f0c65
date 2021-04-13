@@ -1,0 +1,60 @@
+I"m<p>It’s a write-up about the room : <a href="https://tryhackme.com/room/googledorking">Try Hack Me - Room : Google Dorking</a></p>
+
+<h1 id="task-1-introduction">[Task 1] Introduction</h1>
+
+<p><img src="/assets/img/thm/google-dorking/task-1.png" alt="Task 1" /></p>
+
+<h1 id="task-2-lets-learn-about-crawlers">[Task 2] Let’s Learn About Crawlers</h1>
+
+<p><img src="/assets/img/thm/google-dorking/crawler.png" alt="Crawler" /></p>
+
+<blockquote>
+  <p>In the diagram above, the <code class="language-plaintext highlighter-rouge">crawler</code> initially finds “mywebsite.com”, where it crawls the contents of the website - finding the same keywords (“Apple”, “Banana” and “Pear”) as before, but it has additionally found an external URL. Once the crawler is complete on “mywebsite.com”, it’ll proceed to crawl the contents of the website “anotherwebsite.com”, where the <code class="language-plaintext highlighter-rouge">keywords</code> (“Tomatoes”, “Strawberries” and “Pineapples”) are found on it. The crawler’s dictionary now contains the contents of both “mywebsite.com” and “anotherwebsite.com”, which is then stored and saved within the search engine.</p>
+</blockquote>
+
+<p><img src="/assets/img/thm/google-dorking/answer-2.png" alt="Answer task 2" /></p>
+
+<h1 id="task-3-enter-search-engine-optimisation">[Task 3] Enter: Search Engine Optimisation</h1>
+
+<blockquote>
+  <p>At an abstract view, search engines will <code class="language-plaintext highlighter-rouge">prioritise</code> those domains that are easier to index. There are many factors in how “optimal” a domain is - resulting in something similar to a point-scoring system.</p>
+</blockquote>
+
+<p><a href="https://seositecheckup.com">SEO Site Checkup</a> is a website which enables to check the rating of websites.</p>
+
+<p>We use this one, to answer the different questions below :</p>
+
+<p><img src="/assets/img/thm/google-dorking/answer-3.png" alt="Answer task 3" /></p>
+
+<h1 id="task-4-beepboop---robotstxt">[Task 4] Beepboop - Robots.txt</h1>
+
+<p><code class="language-plaintext highlighter-rouge">Robots.txt</code> is the first file indexed by <code class="language-plaintext highlighter-rouge">crawlers</code> when visiting a website.</p>
+
+<p>This file must be served at the root directory and indicate whether certain user agents (web-crawling software) can or cannot crawl parts of a website.</p>
+
+<p>Thse crawl instructions are specified by <code class="language-plaintext highlighter-rouge">disallowing</code> or <code class="language-plaintext highlighter-rouge">allowing</code>the behavior of certain (or all) user agents.</p>
+
+<p>Robots.txt is similar to <code class="language-plaintext highlighter-rouge">Sitemaps</code>. This one is located at <code class="language-plaintext highlighter-rouge">http://mywebsite.com/sitemap.xml</code>.</p>
+
+<p><img src="/assets/img/thm/google-dorking/answer-4.png" alt="Answer task 4" /></p>
+
+<h1 id="task-5-sitemaps">[Task 5] Sitemaps</h1>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Sitemaps</code> are indicative resources that are helpful for crawlers, as they specify the necessary routes to find content on the domain. The below illustration is a good example of the structure of a website, and how it may look on a “Sitemap”:</p>
+</blockquote>
+
+<p><img src="/assets/img/thm/google-dorking/sitemaps.png" alt="Sitemaps" /></p>
+
+<p><strong>The easier a website is to <code class="language-plaintext highlighter-rouge">Crawl</code>, the more optimised it is for the <code class="language-plaintext highlighter-rouge">Search Engine</code>.</strong></p>
+
+<p><img src="/assets/img/thm/google-dorking/answer-5.png" alt="Answer task 5" /></p>
+
+<h1 id="task-6-what-is-google-dorking-">[Task 6] What is Google Dorking ?</h1>
+
+<p>Now to the meat of the whole <code class="language-plaintext highlighter-rouge">Google Dorking</code>/Google Fu by using the index categorizations for websearches that Google has meticulously gathered.</p>
+
+<p>All those crawlers can now be used in reverse uno fashion for your speedy research !</p>
+
+<p><img src="/assets/img/thm/google-dorking/answer-6.png" alt="Answer task 6" /></p>
+:ET

@@ -1,0 +1,237 @@
+I"�,<p>It’s a write-up about the room : <a href="https://tryhackme.com/room/zthlinux">Try Hack Me - Room : Learn Linux</a></p>
+
+<h1 id="section-1--ssh">[Section 1 : SSH]</h1>
+
+<p>We connect by ssh to the host <strong>ip_machine</strong> with the username and password : <strong>shiba1</strong>.</p>
+
+<p>We used the command : <code class="language-plaintext highlighter-rouge">ssh shiba1@ip_machine</code> with the password <code class="language-plaintext highlighter-rouge">shiba1</code>.</p>
+
+<h1 id="section-2--running-commands">[Section 2 : Running Commands]</h1>
+
+<p>To <code class="language-plaintext highlighter-rouge">output</code> hello without a newline : <code class="language-plaintext highlighter-rouge">echo -n hello</code>.</p>
+
+<h1 id="section-3--basic-file-operations">[Section 3 : Basic File Operations]</h1>
+
+<ul>
+  <li>
+    <p>What flag outputs all entries ? <code class="language-plaintext highlighter-rouge">-a</code></p>
+  </li>
+  <li>
+    <p>What flag outputs things in a “long list” format ? <code class="language-plaintext highlighter-rouge">-l</code></p>
+  </li>
+  <li>
+    <p>What flag numbers all output lines ? <code class="language-plaintext highlighter-rouge">-n</code></p>
+  </li>
+  <li>
+    <p>How would you run a binary called hello using the directory shortcut ? <code class="language-plaintext highlighter-rouge">./hello</code></p>
+  </li>
+  <li>
+    <p>How would you run a binary called hello in your home directory using the shortcut ~ ? <code class="language-plaintext highlighter-rouge">~/hello</code></p>
+  </li>
+  <li>
+    <p>How would you run a binary called hello in the previous directory using the shortcut .. ? <code class="language-plaintext highlighter-rouge">../hello</code></p>
+  </li>
+</ul>
+
+<h1 id="binary---shiba1">Binary - shiba1</h1>
+
+<blockquote>
+  <p>This challenge is pretty simple, create a file called noot.txt. Once you’re done run the binary and you’ll be given the password for the user shiba2!</p>
+</blockquote>
+
+<p>We created a file called <code class="language-plaintext highlighter-rouge">noot.txt</code>, and we run the binary shiba1 like <code class="language-plaintext highlighter-rouge">./shiba1</code>.</p>
+
+<p>We obtained the flag : <strong>pinguftw</strong>.</p>
+
+<h1 id="su">su</h1>
+
+<ul>
+  <li>How do you specify which shell is used when you login? <code class="language-plaintext highlighter-rouge">-s</code></li>
+</ul>
+
+<h1 id="section-4---linux-operators">Section 4 - Linux Operators</h1>
+
+<ul>
+  <li>How would you output twenty to a file called test ? <code class="language-plaintext highlighter-rouge">echo twenty &gt; test</code>.</li>
+</ul>
+
+<blockquote>
+  <p>The command <strong>»</strong> does mainly the same thing as &gt;, with one key difference. » appends the output of a command to a file, instead of erasing it.</p>
+</blockquote>
+
+<blockquote>
+  <p>Meaning <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> allows you to execute a second command after the first one has executed successfully.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>How would you set nootnoot equal to 1111 <code class="language-plaintext highlighter-rouge">export nootnoot=1111</code>.</p>
+  </li>
+  <li>
+    <p>What is the value of the home environment variable ?<br />
+We used the command <code class="language-plaintext highlighter-rouge">echo $HOME</code>, and we found <strong>/home/shiba2</strong>.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">|</code> operator allows you to take the output of a command and use it as input for a second command.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">;</code> operator works a lot like &amp;&amp;, however it does not require the first command to execute successfully.</p>
+  </li>
+</ul>
+
+<h1 id="binary---shiba2">Binary - shiba2</h1>
+
+<ul>
+  <li>The binary is checking to see if the environment variable “test1234” exists, and if it’s set equal to the current $USER environment variable.</li>
+</ul>
+
+<p>We assigned the current <code class="language-plaintext highlighter-rouge">$USER</code> environment variable to the variable <em>test1234</em>.<br />
+So, we did the commmand : <code class="language-plaintext highlighter-rouge">export test1234=$USER</code>.<br />
+We have executed the binary and obtained the password <strong>happynootnoises</strong> for shiba3.</p>
+
+<h1 id="section-5---advanced-file-operators">[Section 5 - Advanced File Operators]</h1>
+
+<h2 id="chmod">chmod</h2>
+
+<ul>
+  <li>
+    <p>What permissions mean the user can read the file, the group can read and write to the file, and no one else can read, write or execute the file? <code class="language-plaintext highlighter-rouge">460</code></p>
+  </li>
+  <li>
+    <p>What permissions mean the user can read, write, and execute the file, the group can read, write, and execute the file, and everyone else can read, write, and execute the file ? <code class="language-plaintext highlighter-rouge">777</code></p>
+  </li>
+</ul>
+
+<h2 id="chown">chown</h2>
+
+<ul>
+  <li>
+    <p>How would you change the owner of file to paradox ? <code class="language-plaintext highlighter-rouge">chown paradox file</code></p>
+  </li>
+  <li>
+    <p>What about the owner and the group of file to paradox ? <code class="language-plaintext highlighter-rouge">chown paradox:paradox file</code></p>
+  </li>
+  <li>
+    <p>What flag allows you to operate on every file in the directory at once? <code class="language-plaintext highlighter-rouge">-R</code></p>
+  </li>
+</ul>
+
+<h2 id="rm">rm</h2>
+
+<ul>
+  <li>What flag deletes every file in a directory ? <code class="language-plaintext highlighter-rouge">-r</code></li>
+</ul>
+
+<h2 id="mv">mv</h2>
+
+<ul>
+  <li>How would you move file to /tmp ? <code class="language-plaintext highlighter-rouge">mv file /tmp</code></li>
+</ul>
+
+<h2 id="cd--mkdir">cd &amp;&amp; mkdir</h2>
+
+<ul>
+  <li>
+    <p>Using relative paths, how would you cd to your home directory. <code class="language-plaintext highlighter-rouge">cd /</code></p>
+  </li>
+  <li>
+    <p>Using absolute paths how would you make a directory called test in /tmp. <code class="language-plaintext highlighter-rouge">mkdir /tmp/test</code></p>
+  </li>
+</ul>
+
+<h2 id="ln">ln</h2>
+
+<ul>
+  <li>How would I link /home/test/testfile to /tmp/test ? <code class="language-plaintext highlighter-rouge">ln /home/test/testfile /tmp/test</code></li>
+</ul>
+
+<h2 id="find">find</h2>
+
+<ul>
+  <li>
+    <p>How do you find files that have specific permissions? <code class="language-plaintext highlighter-rouge">-perm</code></p>
+  </li>
+  <li>
+    <p>How would you find all the files in /home ? <code class="language-plaintext highlighter-rouge">find /home</code></p>
+  </li>
+  <li>
+    <p>How would you find all the files owned by paradox on the whole system ? <code class="language-plaintext highlighter-rouge">find / -user paradox</code></p>
+  </li>
+</ul>
+
+<h2 id="grep">grep</h2>
+
+<ul>
+  <li>
+    <p>What flag lists line numbers for every string found ? <code class="language-plaintext highlighter-rouge">-n</code></p>
+  </li>
+  <li>
+    <p>How would I search for the string boop in the file aaaa in the directory /tmp ? <code class="language-plaintext highlighter-rouge">grep boop /tmp/aaaa</code></p>
+  </li>
+</ul>
+
+<h1 id="binary---shiba3">Binary - Shiba3</h1>
+
+<blockquote>
+  <p>We’ve been through a lot in this section, and the challenge for this binary will reflect that. The first step is actually finding the binary, I’m not heartless though, so I’ll give you the name of the binary. The name of the binary is shiba4. The actual binary will check for two things, it will be checking that there’s a directory called test in your home directory, how you create that is up to you. It will also be checking that inside the directory there’s a file called test1234.</p>
+</blockquote>
+
+<p>We have searched the binary shiba4 with the command : <code class="language-plaintext highlighter-rouge">find /* | grep siba4</code>.<br />
+We found a binary hidden in <em>/opt/secret</em>. We executed the binary and found the password <strong>test1234</strong>.</p>
+
+<h1 id="section-6--miscellaneous">[Section 6 : Miscellaneous]</h1>
+
+<h1 id="sudo">sudo</h1>
+
+<ul>
+  <li>
+    <p>How do you specify which user you want to run a command as ? <code class="language-plaintext highlighter-rouge">-U</code></p>
+  </li>
+  <li>
+    <p>How would I run whoami as user jen? <code class="language-plaintext highlighter-rouge">sudo -U jen whoami</code></p>
+  </li>
+  <li>
+    <p>How do you list your current sudo privileges(what commands you can run, who you can run them as etc.) ? <code class="language-plaintext highlighter-rouge">-l</code></p>
+  </li>
+</ul>
+
+<h2 id="adding-users-and-group">adding users and group</h2>
+
+<ul>
+  <li>How would I add the user test to the group test ? <code class="language-plaintext highlighter-rouge">sudo usermod -a -G test test</code></li>
+</ul>
+
+<h2 id="important-files-and-directories">important files and directories</h2>
+
+<ul>
+  <li>/etc/passwd - Stores user information - Often used to see all the users on a system.</li>
+  <li>/etc/shadow - Has all the passwords of these users.</li>
+  <li>/tmp - Every file inside it gets deleted upon shutdown - used for temporary files.</li>
+  <li>/etc/sudoers - Used to control the sudo permissions of every user on the system -.</li>
+  <li>/home - The directory where all your downloads, documents etc are. - The equivalent on Windows is C:\Users&lt;user&gt;.</li>
+  <li>/root - The root user’s home directory - The equivilent on Windows is C:\Users\Administrator.</li>
+  <li>/usr - Where all your software is installed.</li>
+  <li>/bin and /sbin - Used for system critical files - DO NOT DELETE.</li>
+  <li>/var - The Linux miscellaneous directory, a myriad of processes store data in /var.</li>
+  <li><code class="language-plaintext highlighter-rouge">$PATH</code> - Stores all the binaries you’re able to run - same as $PATH on Windows.</li>
+</ul>
+
+<h1 id="bonus-challenge">Bonus Challenge</h1>
+
+<ul>
+  <li>There’s one flag on this machine and it’s in /root/root.txt, everything you need to get there is in this room.</li>
+</ul>
+
+<p>We searched a regular file that we didn’t see before with all users : shiba1, shiba2, shiba3, shiba4. 
+So, with the command <code class="language-plaintext highlighter-rouge">find /* -username shiba2 -type f 2&gt;&gt;/dev/null</code>. 
+-type f : to just see regular file. 
+2»/dev/null : to don’t see permission denied files.</p>
+
+<p>We found the file <strong>/var/log/test1234</strong>.
+We logged with shiba2 with <code class="language-plaintext highlighter-rouge">su shiba2</code>and the password <code class="language-plaintext highlighter-rouge">pinguftw</code>.<br />
+After, we used <code class="language-plaintext highlighter-rouge">cat /var/log/test1234</code> and found : <strong>nootnoot:notsofast</strong>.<br />
+We decided to switch to the user <em>nootnoot</em> with the password <em>notsofast</em>.<br />
+We check if <em>nootnoot</em> can use sudo with the command : <code class="language-plaintext highlighter-rouge">sudo -s</code> and logged with <em>notsofast</em> again.
+Yesss, this user can use sudo, it’s over ! After that, we could open the file <code class="language-plaintext highlighter-rouge">/root/root.txt</code>.<br />
+In that one, we obtained the hidden flag <strong>ad91979868d06e19d8e8a9c28be56e0c</strong>.</p>
+:ET

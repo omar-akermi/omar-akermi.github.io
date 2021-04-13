@@ -1,0 +1,118 @@
+I"�<p>It’s a write-up about the room : <a href="https://tryhackme.com/room/jupyter101">Try Hack Me - Room : Jupyter 100</a></p>
+
+<h1 id="task-1-preface">[Task 1] Preface</h1>
+
+<p><img src="/assets/img/thm/jupyter-101/task-1.png" alt="Task 1" /></p>
+
+<h1 id="task-2-what-is-jupyter-">[Task 2] What is Jupyter ?</h1>
+
+<blockquote>
+  <p>Jupyter is a web-based platform often used for data analytics / plotting, machine learning, where code is stored in “Notebooks” whom can imported/exported and shared in many formats such as LaTex, HTML, PDF and many more!</p>
+</blockquote>
+
+<h1 id="task-3-deploying-instance--logging-in">[Task 3] Deploying Instance &amp; Logging In</h1>
+
+<p>After deploying the instance, we have :
+<img src="/assets/img/thm/jupyter-101/deploy.png" alt="Deploy" /></p>
+
+<p>We have to go on the website of the IP adress and connect with the password <code class="language-plaintext highlighter-rouge">tryhackme</code>.</p>
+
+<p><img src="/assets/img/thm/jupyter-101/password.png" alt="Password" /></p>
+
+<p>Once connect : <img src="/assets/img/thm/jupyter-101/menu.png" alt="Menu" /></p>
+
+<h1 id="task-4-lets-learn-more-about-jupyter">[Task 4] Let’s Learn More About Jupyter</h1>
+
+<blockquote>
+  <p>Enter the “WhatIsJupyter” directory and launch “WhatIsJupyter.ipynb” and have a read through.</p>
+</blockquote>
+
+<p><img src="/assets/img/thm/jupyter-101/task-4.png" alt="Task-4" /></p>
+
+<h1 id="task-5-understanding-how-jupyter-notebooks-run">[Task 5] Understanding how Jupyter Notebooks Run</h1>
+
+<blockquote>
+  <p>Navigate into the “UnderstandingJupyterNotebooks” directory and launch “UnderstandingHowJupyterExecutes.ipynb” and read the annotations I have made to understand how to answer this.</p>
+</blockquote>
+
+<p><img src="/assets/img/thm/jupyter-101/task-5.png" alt="Task-5" /></p>
+
+<p>After reading the document <code class="language-plaintext highlighter-rouge">UnderstandHowJupyterExecutes.ipynb</code>, we can answer the differents question.</p>
+
+<p>First, the “Cells” act like an <strong>interpreter</strong>.</p>
+
+<p>The In[#] value of the first Cell when it is ran for the first time would be <strong>1</strong>.</p>
+
+<p>The shortcut keyboard to execute a cell is <strong>Shift + Enter</strong>.</p>
+
+<p>If you execute again the first Cell, the value would be <strong>2</strong>.</p>
+
+<h1 id="task-6-interacting-with-the-filesystem">[Task 6] Interacting with the Filesystem!</h1>
+
+<blockquote>
+  <p>Let’s log into the Instance, replacing any IP address in the pictures below with that of the Instance you have deployed.
+Username: thm<br />
+Password: tryhackme<br />
+Port: 22</p>
+</blockquote>
+
+<p>With Linux, we can login into the Instance with <code class="language-plaintext highlighter-rouge">ssh username@ip_machine</code>.</p>
+
+<p><img src="/assets/img/thm/jupyter-101/ssh.png" alt="SSH" /></p>
+
+<blockquote>
+  <p>Now, after successful login, lets see what’s going on, using ls. Then, we create a new file using touch in this case, “LookAtMe.Txt”.</p>
+</blockquote>
+
+<p><img src="/assets/img/thm/jupyter-101/ls.png" alt="ls" /></p>
+
+<blockquote>
+  <p>Then, we create a new file using touch in this case, “LookAtMe.Txt”.</p>
+</blockquote>
+
+<p><img src="/assets/img/thm/jupyter-101/nano.png" alt="nano" /></p>
+
+<blockquote>
+  <p>Go back to the Jupyter instance in your web browser, we can now see the file we have just created is visible within Jupyter!</p>
+</blockquote>
+
+<p><img src="/assets/img/thm/jupyter-101/menu-task-5.png" alt="Menu-Task-5" /></p>
+
+<p><img src="/assets/img/thm/jupyter-101/LookAtMe.png" alt="LookAtMe.txt" /></p>
+
+<h1 id="task-7-handling-data-with-pandas">[Task 7] Handling Data With Pandas</h1>
+
+<blockquote>
+  <p>Navigate to the “IntroToPandas” directory on the Jupyter instance and run “IntroToPandas.ipynb” please read the annotations.</p>
+</blockquote>
+
+<p><img src="/assets/img/thm/jupyter-101/task-7.png" alt="Task 7" /></p>
+
+<p>After reading the document <code class="language-plaintext highlighter-rouge">IntroToPandas.ipynb</code>, we can answer the different questions.</p>
+
+<p>The two main types of data within Pandas are <strong>series and dataframes</strong>.
+The name of the Pandas function that reads a CSV file is <strong>read_csv</strong>.</p>
+
+<p>The function that displays the first few rows is <strong>head</strong>, the last few rows is <strong>tails</strong>.<br />
+The functon that gives the amount of columns and rows of the dataset is <strong>shape</strong>.</p>
+
+<h1 id="task-8-visualising-data-with-matplotlib">[Task 8] Visualising Data With Matplotlib</h1>
+
+<blockquote>
+  <p>Navigate to the “IntroToMatplotlib” directory on the Jupyter Instance and run “IntroToMatplotlib.ipynb” please read the annotations.</p>
+</blockquote>
+
+<p><img src="/assets/img/thm/jupyter-101/task-8.png" alt="Task 8" /></p>
+
+<p>After reading the document <code class="language-plaintext highlighter-rouge">IntroToMatplotlib.ipynb</code>, we can answer the differents question.</p>
+
+<p>The different answers are :</p>
+<ul>
+  <li><strong>plot()</strong></li>
+  <li><strong>xlabel</strong></li>
+  <li><strong>ylabel</strong></li>
+  <li><strong>title</strong></li>
+  <li><strong>color</strong></li>
+  <li><strong>zlabel</strong></li>
+</ul>
+:ET

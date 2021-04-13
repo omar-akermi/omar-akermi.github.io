@@ -1,0 +1,31 @@
+I"�<p>It’s a write-up about the challenge : <a href="https://ringzer0ctf.com/challenges/23">Ringzer0CTF - Can you understand this sentence</a></p>
+
+<h1 id="challenge-23---can-you-understand-this-sentence-">Challenge 23 - Can you understand this sentence ?</h1>
+
+<h2 id="1-challenge">1. Challenge</h2>
+
+<pre><code class="language-xipak-comok-repuk-vanik-dytuk-dimyk-sinyx```">
+## 2. Solution
+
+Bubble Babble is a binary data encoding designed by Antti Huima. This encoding uses alternation of consonants and vowels to encode binary data to pseudowords that can be pronounced more easily than arbitrary lists of hexadecimal digits. 
+
+We used this git : https://github.com/bohwaz/bubblebabble
+
+We created a php file flag which contains the code to decrypt :
+
+</code></pre>
+<p>&lt;?php</p>
+
+<p>// Check Bubble Babble encoding / decoding</p>
+
+<p>require ‘bubble_babble.php’;</p>
+
+<p>$decoded = BubbleBabble::Decode(‘xipak-comok-repuk-vanik-dytuk-dimyk-sinyx’);</p>
+
+<p>print $decoded;
+```</p>
+
+<p>Then in a terminal we launched the program : <code class="language-plaintext highlighter-rouge">php flag.php</code></p>
+
+<p>The flag was : <strong>hackingbubble</strong></p>
+:ET

@@ -1,0 +1,29 @@
+I"Y<p>It’s a write-up about the challenge : <a href="https://ringzer0ctf.com/challenges/51">Ringzer0CTF - I lost my password can you find it ?</a></p>
+
+<h1 id="challenge-51---i-lost-my-password-can-you-find-it-">Challenge 51 - I lost my password can you find it ?</h1>
+
+<h2 id="1-challenge">1. Challenge</h2>
+
+<p>It’s an archive.</p>
+
+<h2 id="2-solution">2. Solution</h2>
+
+<p>Group policy preferences allows domain admins to create and deploy across the domain local users and local administrators accounts.
+We searched into all directories. In one of them, we found a file called Groups.xml.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;Groups clsid="{3125E937-EB16-4b4c-9934-544FC6D24D26}"&gt;&lt;User clsid="{DF5F1855-51E5-4d24-8B1A-D9BDE98BA1D1}" name="Administrator (built-in)" image="1" changed="2014-02-06 19:33:28" uid="{C73C0939-38FB-4287-AC48-478F614F5EF7}" userContext="0" removePolicy="0"&gt;&lt;Properties action="R" fullName="Administrator" description="Administrator" cpassword="PCXrmCkYWyRRx3bf+zqEydW9/trbFToMDx6fAvmeCDw" changeLogon="0" noChange="0" neverExpires="1" acctDisabled="0" subAuthority="" userName="Administrator (built-in)"/&gt;&lt;/User&gt;
+&lt;/Groups&gt;
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>We saw the encrypted password in cpassword.
+These password are all encrypted with AES, so we get the ruby script on this website : https://pentestlab.blog/tag/cpassword/</p>
+
+<p>We put the cpassword on this file flag.rb.
+We launched this one : <code class="language-plaintext highlighter-rouge">ruby flag.rb</code></p>
+
+<p>We found the solution : <strong>LocalRoot!</strong></p>
+:ET

@@ -1,0 +1,29 @@
+I"�<p>It’s a write-up about the challenge : <a href="https://ringzer0ctf.com/challenges/274">Ringzer0CTF - You’re Drunk ! : Bacon</a></p>
+
+<h1 id="challenge-274---youre-drunk-">Challenge 274 - You’re Drunk !</h1>
+
+<h2 id="1-challenge">1. Challenge</h2>
+
+<p>The crypto challenge is :</p>
+
+<p><code class="language-plaintext highlighter-rouge">Ayowe awxewr nwaalfw die tiy rgw fklf ua xgixiklrw! Tiy lew qwkxinw.</code></p>
+
+<h2 id="2-solution">2. Solution</h2>
+
+<p>We used this website to decode the message :
+https://planetcalc.com/8047/
+The decrypeted text was :
+<code class="language-plaintext highlighter-rouge">SFPER SECRET LESSANE WOR DOF THE NMAN IS CHOCOMATE! DOF ARE VEMCOLE.</code></p>
+
+<p>So, we tried to decode the message with the word secret, by replacing all the letters.
+First try : 
+S–er secret -ess–e –r — t-e —- is c–c—te ! — are -e-c–e</p>
+
+<p>At the end with some deduction we had :</p>
+
+<p><code class="language-plaintext highlighter-rouge">Super secret message for you the glag is chocolate ! you are welcome.</code></p>
+
+<p>We saw that the letter in the code is the letter on the right in a qwerty keyboard.</p>
+
+<p>The flag is : <strong>chocolate</strong></p>
+:ET

@@ -1,0 +1,64 @@
+I"�<p>It’s a write-up about the challenge : <a href="https://ringzer0ctf.com/challenges/218">Ringzer0CTF - Bash Jail 1</a></p>
+
+<h1 id="challenge-218---bash-jail-1">Challenge 218 - Bash Jail 1</h1>
+
+<h2 id="1-challenge">1. Challenge</h2>
+
+<p>After login into the level1 with this command : 
+<code class="language-plaintext highlighter-rouge">ssh -l level1 -p 10218 challenges.ringzer0team.com</code>
+and this password : level1</p>
+
+<p>We saw :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td> --><td class="rouge-code"><pre>RingZer0 Team Online CTF
+
+BASH Jail Level 1:
+Current user is uid=1000(level1) gid=1000(level1) groups=1000(level1)
+
+Flag is located at /home/level1/flag.txt
+
+Challenge bash code:
+-----------------------------
+
+while : do
+done
+  echo "Your input:" 
+  read input 
+  output=`$input`
+
+-----------------------------
+
+Your input:
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="2-solution">2. Solution</h2>
+
+<p>The problem is that we couldn’t receive the stdout. 
+But after, some tries we saw that we received stderr.</p>
+
+<p>We launched the bash with <code class="language-plaintext highlighter-rouge">bash</code>. 
+And we pipe stdout to stderr to read the flag file. 
+1 stands for stdout and 2 stands for stderr. 
+So we found the solution with this command : <code class="language-plaintext highlighter-rouge">cat flag.txt 1&gt;&amp;2</code></p>
+
+<p>The flag is : <strong>FLAG-U96l4k6m72a051GgE5EN0rA85499172K</strong></p>
+:ET

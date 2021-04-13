@@ -1,0 +1,21 @@
+I"E<p>It’s a write-up about the challenge : <a href="https://ringzer0ctf.com/challenges/25">Ringzer0CTF - Some Martian Message</a></p>
+
+<h1 id="challenge-25---some-martian-message">Challenge 25 - Some Martian Message</h1>
+
+<h2 id="1-challenge">1. Challenge</h2>
+
+<p>The first crypto challenge is :</p>
+
+<p><code class="language-plaintext highlighter-rouge">SYNTPrfneVfPbbyOhgAbgFrpher</code></p>
+
+<h2 id="2-solution">2. Solution</h2>
+
+<p>The first thing we tried is a caesar cipher decryption tool, on this website :
+http://www.xarg.org/tools/caesar-cipher/</p>
+
+<p>This algorithm actually finds what kind of caesar encryption is used.
+We chose “guess” as the key, and it found 13. 
+So, the result was similar to an rol13 encryption, it’s a Caesar cipher code.</p>
+
+<p>The code is : <strong>FLAGCesarIsCoolButNotSecure</strong></p>
+:ET

