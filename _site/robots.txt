@@ -3,4 +3,4 @@ User-agent: *
 
 Disallow: /norobots/
 
-Sitemap: https://omar-akermi.github.io/sitemap.xml
+Sitemap: http://localhost:1235/sitemap.xml

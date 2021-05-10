@@ -1,0 +1,126 @@
+I"B<p>It’s a write-up about the Tryhackme room : [Rick and Morty]</p>
+
+<h2 id="1-challenge">1. Challenge</h2>
+
+<p>This Rick and Morty themed challenge requires you to exploit a webserver to find 3 ingredients that will help Rick make his potion to transform himself back into a human from a pickle.</p>
+
+<h2 id="2-solution">2. Solution</h2>
+
+<p>First thing let’s run a scan on the IP we got</p>
+
+<p>for this i’ve used nmapAutomator</p>
+
+<p><img src="/assets/img/rickandmorty/1.jpg" alt="nmapAutomator scan" /></p>
+
+<p>let’s go ahead to the 80 port and check the website</p>
+
+<p><img src="/assets/img/rickandmorty/2.jpg" alt="site" /></p>
+
+<p>there’s nothing interesting here so let’s take a look on the webpage source code</p>
+
+<p><img src="/assets/img/rickandmorty/3.jpg" alt="Source code" /></p>
+
+<p>that’s great we have found the username</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td> --><td class="rouge-code"><pre>Username: R1ckRul3s
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>but we can’t see any login form</p>
+
+<p>let’s continue our enumeration</p>
+
+<p>for this im going to use dirsearch</p>
+
+<p><img src="/assets/img/rickandmorty/4.jpg" alt="dirsearch" /></p>
+
+<p>okay let’s check the robots.txt</p>
+
+<p><img src="/assets/img/rickandmorty/5.jpg" alt="robots.txt" /></p>
+
+<p>hmmm i’ll keep that in mind</p>
+
+<p>let’s go and check /assets/</p>
+
+<p><img src="/assets/img/rickandmorty/6.jpg" alt="assets" /></p>
+
+<p>i guess nothing is important here</p>
+
+<p>let’s go to the login.php page</p>
+
+<p><img src="/assets/img/rickandmorty/7.jpg" alt="login.php" /></p>
+
+<p>let’s use the username we found earlier and for the password i’ll go with that text we found in robots.txt</p>
+
+<p><img src="/assets/img/rickandmorty/8.jpg" alt="logged" /></p>
+
+<p>okay we are in</p>
+
+<p>let’s try to create a reverse shell through it</p>
+
+<p><img src="/assets/img/rickandmorty/9.jpg" alt="shell" /></p>
+
+<p>okay we are able to get our shell</p>
+
+<p>i’ve ran <code class="language-plaintext highlighter-rouge">ls</code> and we got a suspicious file name</p>
+
+<p>Sup3rS3cretPickl3Ingred.txt</p>
+
+<p>when we cat that file we find our first flag</p>
+
+<p>then let’s cat the <code class="language-plaintext highlighter-rouge">clue.txt</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre>$cat clue.txt
+
+Look around the file system for the other ingredient.
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>if we play around in the system we’ll find the second flag in <code class="language-plaintext highlighter-rouge">/home/rick</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre>$cat 'second ingredients'
+
+**!REDACTED!**
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>okay we still have to find the third flag now</p>
+
+<p>let’s check our current user</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td> --><td class="rouge-code"><pre>$whoami
+
+www-var
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>can we preform a preform a simple PE ?</p>
+
+<p>let’s check our sudo permissions</p>
+
+<p><img src="/assets/img/rickandmorty/10.jpg" alt="sudo -l" /></p>
+
+<p>let’s go root then check the /root directory</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td> --><td class="rouge-code"><pre>$sudo su
+$ls /root
+3rd.txt
+snap
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>finally let’s cat our 3rd flag</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><!-- <td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td> --><td class="rouge-code"><pre>$cat /root/3rd.txt
+!REDACTED!
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>i guess that’s it for this room.
+Peace.</p>
+:ET
